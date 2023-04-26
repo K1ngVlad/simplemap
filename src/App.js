@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { MapComponent, SideBar, WaterMark } from './components';
 import { MapProvider } from './contexts';
 
