@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { MapComponent, SideBar, WaterMark } from './components';
+import { MapProvider } from './contexts';
 
-function App() {
+import data from './assets/settlement.json';
+
+import './styles/fonts.css';
+import './styles/globalStyles.css';
+
+const App = () => {
+  const [municipalitet, setMunicipalitet] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MapProvider
+      value={{
+        features: data.features,
+        municipalitets: new Set(
+          data.features.map((e) => e.properties.municipalitet)
+        ),
+        municipalitet,
+        setMunicipalitet,
+      }}
+    >
+      <div className="app">
+        <SideBar />
+        <MapComponent />
+        <WaterMark />
+      </div>
+    </MapProvider>
   );
-}
+};
 
 export default App;
