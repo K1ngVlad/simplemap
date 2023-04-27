@@ -17,7 +17,8 @@ const geoJSONStyle = (feature, municipalitet) => {
   };
 };
 
-const pointToLayer = (feature, latlng, municipalitet) => {
+const pointToLayer = (feature, latlng, municipalitet, mark) => {
+  if (!mark) return null;
   if (feature.properties.municipalitet === municipalitet) {
     return L.marker(latlng, {
       icon: redIcon,

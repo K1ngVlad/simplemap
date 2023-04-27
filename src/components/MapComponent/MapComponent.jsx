@@ -9,8 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import s from './style.module.css';
 
 const MapComponent = () => {
-  const { features, municipalitet } = useContext(MapContext);
-
+  const { features, municipalitet, mark } = useContext(MapContext);
   return (
     <div className={s.container}>
       <MapContainer center={center} zoom={zoom} className={s.mapComponent}>
@@ -19,7 +18,7 @@ const MapComponent = () => {
           key={Date.now()}
           data={features}
           pointToLayer={(feature, latlng) =>
-            pointToLayer(feature, latlng, municipalitet)
+            pointToLayer(feature, latlng, municipalitet, mark)
           }
           style={(feature) => geoJSONStyle(feature, municipalitet)}
         />

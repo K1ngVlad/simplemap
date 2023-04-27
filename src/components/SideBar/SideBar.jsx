@@ -5,7 +5,7 @@ import { MapContext } from '../../contexts';
 import s from './style.module.css';
 
 const SideBar = () => {
-  const { municipalitet, setMunicipalitet, municipalitets } =
+  const { municipalitet, setMunicipalitet, municipalitets, mark, setMark } =
     useContext(MapContext);
 
   return (
@@ -20,14 +20,23 @@ const SideBar = () => {
           className={s.select}
         >
           <option value={''}>{'--Выберите район--'}</option>
-          {Array.from(municipalitets)
-            .sort()
-            .map((e) => (
-              <option value={e} key={e}>
-                {e}
-              </option>
-            ))}
+          {municipalitets.map((e) => (
+            <option value={e} key={e}>
+              {e}
+            </option>
+          ))}
         </select>
+        <label className={s.setMark}>
+          <span>Метки</span>
+          <input
+            className={s.checkBox}
+            type="checkbox"
+            value={mark}
+            onChange={() => {
+              setMark((e) => !e);
+            }}
+          />
+        </label>
       </div>
     </aside>
   );
