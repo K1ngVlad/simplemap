@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { MapComponent, SideBar, WaterMark } from './components';
 import { MapProvider } from './contexts';
 
@@ -15,14 +15,9 @@ const App = () => {
   const [municipalitet, setMunicipalitet] = useState('');
   const [mark, setMark] = useState(false);
 
-  const appRef = useRef(null);
-
   useEffect(() => {
     document.title = 'Simple Map';
-    // if (appRef) {
-    //   appRef.style.height = `calc(100vh - ${window.safeAreaInsets.top}px)`;
-    // }
-  }, [appRef]);
+  }, []);
 
   return (
     <MapProvider
@@ -35,7 +30,7 @@ const App = () => {
         setMark,
       }}
     >
-      <div ref={appRef} className="app">
+      <div className="app">
         <SideBar />
         <MapComponent />
         <WaterMark />
