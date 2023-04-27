@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapComponent, SideBar, WaterMark } from './components';
 import { MapProvider } from './contexts';
 
@@ -14,6 +14,10 @@ const municipalitets = Array.from(
 const App = () => {
   const [municipalitet, setMunicipalitet] = useState('');
   const [mark, setMark] = useState(false);
+
+  useEffect(() => {
+    document.title = 'Simple Map';
+  });
 
   return (
     <MapProvider
